@@ -7,6 +7,7 @@ namespace App\Modules\Threads\Models;
 use App\Models\User;
 use App\Modules\Posts\Models\Post;
 use App\Modules\Topics\Models\Topic;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -35,7 +36,7 @@ class Thread extends Model
         return $this->hasOne(Topic::class, 'id', 'topic_id');
     }
 
-    public function posts(): HasMany
+    public function posts(): HasMany|Builder
     {
         return $this->hasMany(Post::class);
     }
