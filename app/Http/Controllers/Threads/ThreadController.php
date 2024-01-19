@@ -11,9 +11,9 @@ use Illuminate\Contracts\View\View;
 class ThreadController extends Controller
 {
     public function view(
+        GetPaginatedThreadUseCase $getPaginatedThreadUseCase,
         int $threadId,
         int $page = 1,
-        GetPaginatedThreadUseCase $getPaginatedThreadUseCase,
     ): View {
         [$thread, $posts] = $getPaginatedThreadUseCase->handle($threadId, $page);
 
