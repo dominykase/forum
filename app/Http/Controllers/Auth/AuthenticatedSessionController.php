@@ -15,9 +15,12 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('auth.login');
+        $threadId = request()->query('tid', null);
+        $page = request()->query('p', null);
+
+        return view('auth.login', ['threadId' => $threadId, 'page' => $page]);
     }
 
     /**
@@ -29,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->route('thread', ['threadId' => $request->tid, 'page' => $request->p]);
     }
 
     /**

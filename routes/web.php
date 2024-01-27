@@ -31,7 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/post', [PostController::class, 'store'])->name('post.store');
 });
 
-Route::get('/thread/{threadId}/{page}', [ThreadController::class, 'view']);
+Route::get('/thread/{threadId}/{page}', [ThreadController::class, 'view'])
+    ->name('thread')
+    ->whereNumber('threadId')
+    ->whereNumber('page');
 
 
 require __DIR__.'/auth.php';

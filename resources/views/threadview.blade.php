@@ -19,7 +19,7 @@
                     @endforeach
                 </div>
                 <div class="w-full border-solid border-black border p-5 mt-5">
-                    <p>Post a reply</p>
+                    <p class="mb-3">Post a reply</p>
                     @if (request()->user())
                         <form action="{{ route('post.store') }}" method="POST" class="m-0">
                             @csrf
@@ -28,7 +28,7 @@
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded">Post</button>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login to post</a>
+                        <a href="{{ '/login?tid=' . $thread->id . '&p=' . $pageNum }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login to post</a>
                     @endif
                 </div>
             </div>

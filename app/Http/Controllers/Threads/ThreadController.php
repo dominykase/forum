@@ -20,6 +20,7 @@ class ThreadController extends Controller
         return view('threadview', [
             'thread' => $thread,
             'posts' => $posts,
+            'pageNum' => $page,
         ]);
     }
 }

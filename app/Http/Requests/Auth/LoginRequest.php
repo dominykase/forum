@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * @property string $email
+ * @property string $password
+ * @property int $tid
+ * @property int $p
+ */
 class LoginRequest extends FormRequest
 {
     /**
@@ -29,6 +35,8 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+            'tid' => ['nullable', 'integer'],
+            'p' => ['nullable', 'integer'],
         ];
     }
 
