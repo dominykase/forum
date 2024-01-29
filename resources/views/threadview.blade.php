@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Thread View</title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/threadview.js'])
     </head>
     <body style="width: 100vw;">
         <div class="p-10 flex justify-center">
@@ -25,7 +25,7 @@
                             @csrf
                             <input type="hidden" name="thread_id" value="{{ $thread->id }}">
                             <textarea name="content" id="content" class="border border-black border-solid w-full"></textarea>
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded">Post</button>
+                            <button type="submit" id="submit_button" disabled class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded">Post</button>
                         </form>
                     @else
                         <a href="{{ '/login?tid=' . $thread->id . '&p=' . $pageNum }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login to post</a>

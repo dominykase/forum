@@ -32,7 +32,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('thread', ['threadId' => $request->tid, 'page' => $request->p]);
+        if ($request->tid && $request->p) {
+            return redirect()->route('thread', ['threadId' => $request->tid, 'page' => $request->p]);
+        }
+
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

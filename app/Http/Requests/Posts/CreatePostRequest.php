@@ -15,7 +15,7 @@ class CreatePostRequest extends FormRequest
     {
         return [
             'thread_id' => ['required', 'integer', 'exists:threads,id'],
-            'content' => ['required', 'string', 'max:65535'],
+            'content' => ['required', 'string', 'max:65535', 'min:1'],
         ];
     }
 }
