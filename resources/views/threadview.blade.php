@@ -3,22 +3,26 @@
         <title>Thread View</title>
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/threadview.js'])
     </head>
-    <body style="width: 100vw;">
+    <body style="width: 100vw;background-color: rgb(241 245 249);">
         <div class="p-10 flex justify-center">
-            <div class="w-5/6 border-solid border-black border p-5">
+            <div class="w-5/6 p-5 bg-slate-50 shadow-lg">
                 <div class="w-full">
                     @foreach ($posts as $post)
                         @if ($loop->index == 0)
-                            <p class="text-2xl">{{ $thread->name }}</h1>
-                            <p class="text-md ml-4">{{ '@' . $thread->user->name }}</p>
-                            <p class="text-lg p-3 border border-white border-b-black border-solid">{{$post->content}}</p>
+                            <div class="w-full mb-5 rounded-lg bg-white shadow-inner">
+                                <p class="text-2xl p-2">{{ $thread->name }}</h1>
+                                <p class="text-md ml-4">{{ '@' . $thread->user->name }}</p>
+                                <p class="text-lg p-3 rounded-lg">{{$post->content}}</p>
+                            </div>
                         @else
-                            <p class="text-md ml-4 pt-2">{{ '@' . $post->user->name }}</p>
-                            <p class="text-lg p-3 border border-white border-b-black border-solid">{{$post->content}}</p>
+                            <div class="w-full my-5 rounded-lg bg-white shadow-inner">
+                                <p class="text-md ml-4 pt-2">{{ '@' . $post->user->name }}</p>
+                                <p class="text-lg p-3">{{$post->content}}</p>
+                            </div>
                         @endif
                     @endforeach
                 </div>
-                <div class="w-full border-solid border-black border p-5 mt-5">
+                <div class="w-full p-5 mt-5 bg-white rounded-lg">
                     <p class="mb-3">Post a reply</p>
                     @if (request()->user())
                         <form action="{{ route('post.store') }}" method="POST" class="m-0">
