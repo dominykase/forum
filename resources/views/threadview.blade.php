@@ -9,20 +9,20 @@
                 <div class="w-full">
                     @foreach ($posts as $post)
                         @if ($loop->index == 0)
-                            <div class="w-full mb-5 rounded-lg bg-white shadow-inner">
+                            <div class="w-full mb-5 rounded-md bg-slate-50 border border-solid border-indigo-500 shadow-lg">
                                 <p class="text-2xl p-2">{{ $thread->name }}</h1>
                                 <p class="text-md ml-4">{{ '@' . $thread->user->name }}</p>
                                 <p class="text-lg p-3 rounded-lg">{{$post->content}}</p>
                             </div>
                         @else
-                            <div class="w-full my-5 rounded-lg bg-white shadow-inner">
+                            <div class="w-full my-5 rounded-md bg-slate-50 border border-solid border-indigo-500 shadow-lg">
                                 <p class="text-md ml-4 pt-2">{{ '@' . $post->user->name }}</p>
                                 <p class="text-lg p-3">{{$post->content}}</p>
                             </div>
                         @endif
                     @endforeach
                 </div>
-                <div class="w-full p-5 mt-5 bg-white rounded-lg">
+                <div class="w-full p-5 mt-5 rounded-lg bg-slate-50 border border-solid border-indigo-500 shadow-lg">
                     <p class="mb-3">Post a reply</p>
                     @if (request()->user())
                         <form action="{{ route('post.store') }}" method="POST" class="m-0">
