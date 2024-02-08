@@ -48,12 +48,5 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
-
-    /**
-     * Display the user page.
-     */
-    public function show(): View
-    {
-        return view('user', ['user' => request()->user()]);
-    }
+   }
 }

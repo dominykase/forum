@@ -3,6 +3,7 @@
 use App\Http\Controllers\Posts\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Threads\ThreadController;
+use App\Http\Controllers\Users\UserViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,5 +37,9 @@ Route::get('/thread/{threadId}/{page}', [ThreadController::class, 'view'])
     ->whereNumber('threadId')
     ->whereNumber('page');
 
+
+Route::get('/user/{username}/{page}', [UserViewController::class, 'showProfile'])
+    ->name('user')
+    ->whereNumber('page');
 
 require __DIR__.'/auth.php';
