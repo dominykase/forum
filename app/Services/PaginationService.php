@@ -13,40 +13,63 @@ class PaginationService
     /**
      * @return array<int, mixed>
      */
-    public function getPageSwitcherNumbers(int $currentPage, int $totalPages): array
-    {
+    public function getPageSwitcherNumbers(
+        int $currentPage,
+        int $totalPosts,
+        int $perPage = 10,
+        int $siblingCount = 1
+    ): array {
         $pageSwitcherNumbers = [];
 
-        if ($totalPages <= self::MIDDLE_COUNT) {
-            for ($i = 1; $i <= $totalPages; $i++) {
+        $totalPageCount = intval(ceil($totalPosts / $perPage));
+
+        $totalPageNumbers = $siblingCount + 5;
+
+        if ($totalPageNumbers >= $totalPageCount) {
+            for ($i = 1; $i <= $totalPageCount; $i++) {
                 $pageSwitcherNumbers[] = $i;
             }
-        } else {
-            if ($currentPage <= self::MIDDLE_COUNT) {
-                for ($i = 1; $i <= self::MIDDLE_COUNT; $i++) {
-                    $pageSwitcherNumbers[] = $i;
-                }
+        }
 
-                $pageSwitcherNumbers[] = self::ELLIPSIS;
-                $pageSwitcherNumbers[] = $totalPages;
-            } elseif ($currentPage >= $totalPages - (self::MIDDLE_COUNT - 1)) {
-                $pageSwitcherNumbers[] = self::DEFAULT_PAGE;
-                $pageSwitcherNumbers[] = self::ELLIPSIS;
+        $leftSiblingIndex = max($currentPage - $siblingCount, 1);
+        $rightSiblingIndex = min($currentPage + $siblingCount, $totalPageCount);
 
-                for ($i = $totalPages - (self::MIDDLE_COUNT - 1); $i <= $totalPages; $i++) {
-                    $pageSwitcherNumbers[] = $i;
-                }
-            } else {
-                $pageSwitcherNumbers[] = self::DEFAULT_PAGE;
-                $pageSwitcherNumbers[] = self::ELLIPSIS;
+        $shouldShowLeftDots = $leftSiblingIndex > 2;
+        $shouldShowRightDots = $rightSiblingIndex < $totalPageCount - 2;
 
-                for ($i = $currentPage - 1; $i <= $currentPage + 1; $i++) {
-                    $pageSwitcherNumbers[] = $i;
-                }
+        $lastPageIndex = $totalPageCount;
 
-                $pageSwitcherNumbers[] = self::ELLIPSIS;
-                $pageSwitcherNumbers[] = $totalPages;
+        if (!$shouldShowLeftDots && $shouldShowRightDots) {
+            $leftItemCount = 3 + 2 * $siblingCount;
+
+            $leftRange = [];
+
+            for ($i = 1; $i <= $leftItemCount; $i++) {
+                $leftRange[] = $i;
             }
+
+            return array_values([...$leftRange, self::ELLIPSIS, $totalPageCount]);
+        }
+
+        if ($shouldShowLeftDots && !$shouldShowRightDots) {
+            $rightItemCount = 3 + 2 * $siblingCount;
+            $rightRange = [];
+
+            for ($i = $totalPageCount - $rightItemCount + 1; $i <= $totalPageCount; $i++) {
+                $rightRange[] = $i;
+            }
+
+            return array_values([self::DEFAULT_PAGE, self::ELLIPSIS, ...$rightRange]);
+        }
+
+        if ($shouldShowLeftDots && $shouldShowRightDots) {
+            $middleRange = [];
+
+            for ($i = $leftSiblingIndex; $i <= $rightSiblingIndex; $i++) {
+                $middleRange[] = $i;
+            }
+
+            return array_values([self::DEFAULT_PAGE, self::ELLIPSIS, ...$middleRange, self::ELLIPSIS, $lastPageIndex]);
         }
 
         return $pageSwitcherNumbers;
