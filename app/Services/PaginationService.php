@@ -29,6 +29,8 @@ class PaginationService
             for ($i = 1; $i <= $totalPageCount; $i++) {
                 $pageSwitcherNumbers[] = $i;
             }
+
+            return $pageSwitcherNumbers;
         }
 
         $leftSiblingIndex = max($currentPage - $siblingCount, 1);
