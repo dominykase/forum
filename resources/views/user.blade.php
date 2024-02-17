@@ -22,7 +22,13 @@
                 @endforeach
                 <div class="w-full flex justify-center">
                     <div>
-                        <a href="{{ '/user/' . $user->name . '/'}}">2</a>
+                        @foreach ($pageNumbers as $pageNumber)
+                            @if ($pageNumber === '...')
+                                <span>{{ $pageNumber }}</span>
+                            @else
+                                <a href="{{ '/user/' . $user->name . '/' . $pageNumber }}">{{ $pageNumber }}</a>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
