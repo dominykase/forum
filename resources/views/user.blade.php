@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Thread View</title>
+        <title>Profile: {{ $user->name }}</title>
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/threadview.js'])
     </head>
     <body style="width: 100vw;background-color: rgb(241 245 249);">
@@ -18,11 +18,14 @@
                     <div class="text-xl font-bold w-96">Posts</div>
                 </div>
                 @foreach ($posts as $post)
-                    <div class="bg-white p-4 m-4 shadow-md">
-                        <p class="text-lg">{{ $post->thread->name }}</p>
-                        <p class="text-md">{{ '@' . $post->user->name }}</p>
-                        <p>{{ $post->content }}</p>
-                    </div>
+                    <a href="{{ '/thread/' . $post->thread->id . '/1' }}" class="text-lg">
+                        <div class="bg-white p-4 m-4 shadow-md">
+                            <p>{{ $post->created_at }}</p>
+                            <p class="text-lg">{{ $post->thread->name }}</p>
+                            <p class="text-md">{{ '@' . $post->user->name }}</p>
+                            <p>{{ $post->content }}</p>
+                        </div>
+                    </a>
                 @endforeach
                 <div class="w-full flex justify-center">
                     <div>
