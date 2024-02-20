@@ -39,7 +39,7 @@ Route::get('/thread/{threadId}/{page}', [ThreadController::class, 'view'])
 
 
 Route::get('/user/{username}/{page}', [UserViewController::class, 'showProfile'])
-    ->name('user')
+    ->name('profile')
     ->whereNumber('page');
 
 require __DIR__.'/auth.php';

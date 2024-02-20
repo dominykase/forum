@@ -4,8 +4,9 @@
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/threadview.js'])
     </head>
     <body style="width: 100vw;background-color: rgb(241 245 249);">
-        <div class="p-10 flex justify-center">
-            <div class="w-5/6 p-5 bg-slate-50 shadow-lg">
+        <x-site-header />
+        <div class="w-full flex justify-center">
+            <div class="w-5/6 mt-8 p-5 bg-slate-50 shadow-lg">
                 <div class="w-full">
                     @foreach ($posts as $post)
                         @if ($loop->index == 0)
