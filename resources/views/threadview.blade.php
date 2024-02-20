@@ -28,7 +28,7 @@
                         @endif
                     @endforeach
                 </div>
-                <div class="w-full p-5 mt-5 bg-slate-50 shadow-md">
+                <div class="w-full p-5 mt-5 bg-white shadow-md">
                     <p class="mb-3">Post a reply</p>
                     @if (request()->user())
                         <form action="{{ route('post.store') }}" method="POST" class="m-0">
