@@ -6,11 +6,13 @@ namespace App\Modules\Posts\UseCases;
 
 use App\Models\User;
 use App\Modules\Posts\Repositories\PostRepository;
+use App\Modules\Threads\Repositories\ThreadRepository;
 
 class CreatePostUseCase
 {
     public function __construct(
         private PostRepository $postRepository,
+        private ThreadRepository $threadRepository,
     ) {
     }
 
@@ -21,5 +23,7 @@ class CreatePostUseCase
             'thread_id' => $threadId,
             'content' => $content,
         ]);
+
+        $this->threadRepository->incrementPostsCount($threadId);
     }
 }

@@ -2,8 +2,8 @@
 This is an online forum website where users can create threads in different topics, and they can post in markdown.
 
 ## todo
-- header navigation (home, profile/login-register)
 - markdown posting (because it would be nice to have formatting and images)
+- topic page with paginated threads (20 per page)
 - topics page with truncated threads inside
 - admin panel
 - user roles
@@ -26,4 +26,5 @@ This is an online forum website where users can create threads in different topi
 - style scheme for frontend (lightweight, but might change)
 - paginated thread page (can view & create text-based posts)
 - paginated profile page (with all the posts)
+- header navigation (home, profile/login-register)
 

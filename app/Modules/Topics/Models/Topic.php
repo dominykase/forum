@@ -6,6 +6,7 @@ namespace App\Modules\Topics\Models;
 
 use App\Modules\Threads\Models\Thread;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -22,7 +23,7 @@ class Topic extends Model
 
     protected $guarded = [];
 
-    public function threads(): HasMany
+    public function threads(): HasMany|Builder
     {
         return $this->hasMany(Thread::class);
     }

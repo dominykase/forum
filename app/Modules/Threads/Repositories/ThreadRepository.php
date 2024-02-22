@@ -12,4 +12,9 @@ class ThreadRepository
     {
         return Thread::query()->findOrFail($threadId);
     }
+
+    public function incrementPostsCount(int $threadId): void
+    {
+        Thread::query()->where('id', $threadId)->increment('posts_count');
+    }
 }

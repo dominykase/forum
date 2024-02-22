@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $name
  * @property int $topic_id
  * @property string $user_id
+ * @property int $posts_count
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
