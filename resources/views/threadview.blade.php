@@ -13,7 +13,7 @@
                             <div class="w-full mb-5 rounded-none bg-white shadow-md"> <!-- border border-solid border-indigo-500 shadow-lg --!>
                                 <p class="text-2xl p-2">{{ $thread->name }}</h1>
                                 <p class="text-md ml-4">
-                                    <a>{{ '@' . $thread->user->name }}</a>
+                                    <a href="{{ route('profile', ['username' => $thread->user->name, 'page' => 1]) }}" class="hover:font-bold">{{ '@' . $thread->user->name }}</a>
                                     <span class="ml-4">{{ $post->created_at }}</span>
                                 </p>
                                 <p class="text-lg p-3 rounded-lg">{{$post->content}}</p>
@@ -21,7 +21,7 @@
                         @else
                             <div class="w-full my-5 rounded-none bg-white shadow-md">
                                 <p class="text-md ml-4 pt-2">
-                                    <a>{{ '@' . $post->user->name }}</a>
+                                    <a href="{{ route('profile', ['username' => $thread->user->name, 'page' => 1]) }}" class="hover:font-bold">{{ '@' . $post->user->name }}</a>
                                     <span class="ml-4">{{ $post->created_at }}</span>
                                 </p>
                                 <p class="text-lg p-3">{{$post->content}}</p>
