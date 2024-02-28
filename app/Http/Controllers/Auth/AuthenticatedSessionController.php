@@ -18,9 +18,10 @@ class AuthenticatedSessionController extends Controller
     public function create(Request $request): View
     {
         $threadId = request()->query('tid', null);
+        $topicId = request()->query('toid', null);
         $page = request()->query('p', null);
 
-        return view('auth.login', ['threadId' => $threadId, 'page' => $page]);
+        return view('auth.login', ['threadId' => $threadId, 'page' => $page, 'topicId' => $topicId]);
     }
 
     /**
@@ -31,6 +32,10 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        if ($request->toid && $request->p) {
+            return redirect()->route('topic', ['topicId' => $request->toid, 'page' => $request->p]);
+        }
 
         if ($request->tid && $request->p) {
             return redirect()->route('thread', ['threadId' => $request->tid, 'page' => $request->p]);

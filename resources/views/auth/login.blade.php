@@ -32,9 +32,10 @@
             </label>
         </div>
 
-        @if ($threadId && $page)
+        @if (($threadId || $topicId) && $page)
             <input type="hidden" name="tid" value="{{ $threadId }}">
             <input type="hidden" name="p" value="{{ $page }}">
+            <input type="hidden" name="toid" value="{{ $topicId }}">
         @endif
 
         <div class="flex items-center justify-end mt-4">

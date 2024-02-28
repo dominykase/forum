@@ -10,7 +10,7 @@
                 <div class="w-full">
                     @foreach ($threads as $thread)
                         <a href="{{ route('thread', ['threadId' => $thread->id, 'page' => 1]) }}">
-                            <div class="w-full p-3 bg-white shadow-md">
+                            <div class="w-full my-2 p-3 bg-white shadow-md">
                                 <p>{{ $thread->posts_count . ' posts | created ' . $thread->created_at}}</p>
                                 <p class="text-xl font-bold">{{ $thread->name }}</p>
                                 <p class="line-clamp-1">{{ $thread->posts()->first()->content }}</p>
@@ -30,7 +30,7 @@
                             <button type="submit" id="submit_button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded">Post</button>
                         </form>
                     @else
-                        <a href="{{ '/login?toid=' . $topic->id }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login to post</a>
+                        <a href="{{ '/login?toid=' . $topic->id . '&p=' . $pageNum }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login to post</a>
                     @endif
                 </div>
                 <div class="mt-5 w-full flex justify-center">

@@ -22,6 +22,7 @@ class TopicController extends Controller
         return view('topic', [
             'topic' => $topic,
             'threads' => $threads,
+            'pageNum' => $page,
             'pageNumbers' => $paginationService->getPageSwitcherNumbers($page, $total, $perPage),
         ]);
     }

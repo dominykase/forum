@@ -13,6 +13,7 @@ use Illuminate\Validation\ValidationException;
  * @property string $email
  * @property string $password
  * @property int $tid
+ * @property int $toid
  * @property int $p
  */
 class LoginRequest extends FormRequest
@@ -37,6 +38,7 @@ class LoginRequest extends FormRequest
             'password' => ['required', 'string'],
             'tid' => ['nullable', 'integer'],
             'p' => ['nullable', 'integer'],
+            'toid' => ['nullable', 'integer'],
         ];
     }
 
