@@ -38,6 +38,9 @@ Route::get('/thread/{threadId}/{page}', [ThreadController::class, 'view'])
     ->whereNumber('threadId')
     ->whereNumber('page');
 
+Route::post('/thread', [ThreadController::class, 'create'])
+    ->name('thread.create');
+
 Route::get('/topic/{topicId}/{page}', [TopicController::class, 'get'])
     ->name('topic')
     ->whereNumber('topicId')

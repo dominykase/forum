@@ -18,13 +18,28 @@
                         </a>
                     @endforeach
                 </div>
+                <div class="w-full p-5 mt-5 bg-white shadow-md">
+                    <p class="mb-3">Create a thread</p>
+                    @if (request()->user())
+                        <form action="{{ route('thread.create') }}" method="POST" class="m-0">
+                            @csrf
+                            <input type="hidden" name="user_id" id="user_id" value="{{ request()->user()->id }}">
+                            <input type="hidden" name="topic_id" id="topic_id" value="{{ $topic->id }}">
+                            <input type="text" name="name" id="name" class="mb-2 border border-black border-solid w-full" placeholder="Thread name">
+                            <textarea name="content" id="content" id="content" class="border border-black border-solid w-full" placeholder="Text content"></textarea>
+                            <button type="submit" id="submit_button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded">Post</button>
+                        </form>
+                    @else
+                        <a href="{{ '/login?toid=' . $topic->id }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login to post</a>
+                    @endif
+                </div>
                 <div class="mt-5 w-full flex justify-center">
                     <div>
                         @foreach ($pageNumbers as $pageNumber)
                             @if ($pageNumber === '...')
                                 <span>{{ $pageNumber }}</span>
                             @else
-                                <a href="{{ '/thread/' . $thread->id . '/' . $pageNumber }}">{{ $pageNumber }}</a>
+                                <a href="{{ '/topic/' . $topic->id . '/' . $pageNumber }}">{{ $pageNumber }}</a>
                             @endif
                         @endforeach
                     </div>
