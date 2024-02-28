@@ -25,9 +25,9 @@
                             @csrf
                             <input type="hidden" name="user_id" id="user_id" value="{{ request()->user()->id }}">
                             <input type="hidden" name="topic_id" id="topic_id" value="{{ $topic->id }}">
-                            <input type="text" name="name" id="name" class="mb-2 border border-black border-solid w-full" placeholder="Thread name">
-                            <textarea name="content" id="content" id="content" class="border border-black border-solid w-full" placeholder="Text content"></textarea>
-                            <button type="submit" id="submit_button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded">Post</button>
+                            <input type="text" name="name" id="name" class="mb-2 border border-black border-solid w-full" placeholder="Thread name (must be at least 5 characters long)">
+                            <textarea name="content" id="content" id="content" class="border border-black border-solid w-full" placeholder="Text content (cannot be empty)"></textarea>
+                            <button type="submit" id="submit_button" disabled class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded">Post</button>
                         </form>
                     @else
                         <a href="{{ '/login?toid=' . $topic->id . '&p=' . $pageNum }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login to post</a>

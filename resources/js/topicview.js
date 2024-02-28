@@ -1,26 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('submit_button').addEventListener('click', function() {
-        const topicId = +document.getElementById('topicId').value;
-        const name = document.getElementById('name').value;
-        const content = document.getElementById('content').value;
-        const userId = +document.getElementById('userId').value;
+    const name = document.getElementById('name');
+    const content = document.getElementById('content');
+    const submitBtn = document.getElementById('submit_button');
 
-        fetch(url, {
-            method: "POST",
-            mode: "cors",
-            cache: "no-cache",
-            credentials: "same-origin",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            redirect: "follow",
-            referrerPolicy: "no-referrer",
-            body: JSON.stringify({
-                topic_id: topicId,
-                name: name,
-                content: content,
-                user_id: userId,
-            }),
-        });
+    name.addEventListener('input', function(_) {
+        if (name.value.length >= 5  && content.value.length > 0) {
+            submitBtn.removeAttribute('disabled');
+        } else {
+            submitBtn.setAttribute('disabled', true);
+        }
+    });
+
+    content.addEventListener('input', function(_) {
+        if (name.value.length >= 5  && content.value.length > 0) {
+            submitBtn.removeAttribute('disabled');
+        } else {
+            submitBtn.setAttribute('disabled', true);
+        }
     });
 });
