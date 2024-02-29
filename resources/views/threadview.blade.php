@@ -5,6 +5,14 @@
     </head>
     <body style="width: 100vw;background-color: rgb(241 245 249);">
         <x-site-header />
+        <article class="prose lg:prose-xl">
+        <x-markdown>
+### Thread View
+This page [displays](https://google.com) a thread and its posts. It also allows users to post a reply to the thread.
+- The thread is displayed at the top of the page.
+- The posts are displayed below the thread.
+        </x-markdown>
+        </article>
         <div class="w-full flex justify-center">
             <div class="w-5/6 mt-8 p-5 bg-slate-50 shadow-lg">
                 <div class="w-full">
