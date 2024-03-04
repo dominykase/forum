@@ -18,6 +18,8 @@
     "dependencies": {
         "@tailwindcss/line-clamp": "^0.4.4",
         "@tailwindcss/typography": "^0.5.10",
+        "@toast-ui/editor": "^3.2.2",
+        "browserify": "^17.0.0",
         "shiki": "^1.1.7"
     }
 }

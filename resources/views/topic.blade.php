@@ -25,8 +25,9 @@
                             @csrf
                             <input type="hidden" name="user_id" id="user_id" value="{{ request()->user()->id }}">
                             <input type="hidden" name="topic_id" id="topic_id" value="{{ $topic->id }}">
+                            <input type="hidden" name="content" id="content">
                             <input type="text" name="name" id="name" class="mb-2 border border-black border-solid w-full" placeholder="Thread name (must be at least 5 characters long)">
-                            <textarea name="content" id="content" id="content" class="border border-black border-solid w-full" placeholder="Text content (cannot be empty)"></textarea>
+                            <div id="editor" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></div>
                             <button type="submit" id="submit_button" disabled class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded">Post</button>
                         </form>
                     @else

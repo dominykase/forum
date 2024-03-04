@@ -5,14 +5,6 @@
     </head>
     <body style="width: 100vw;background-color: rgb(241 245 249);">
         <x-site-header />
-        <article class="prose lg:prose-xl">
-        <x-markdown>
-### Thread View
-This page [displays](https://google.com) a thread and its posts. It also allows users to post a reply to the thread.
-- The thread is displayed at the top of the page.
-- The posts are displayed below the thread.
-        </x-markdown>
-        </article>
         <div class="w-full flex justify-center">
             <div class="w-5/6 mt-8 p-5 bg-slate-50 shadow-lg">
                 <div class="w-full">
@@ -24,7 +16,11 @@ This page [displays](https://google.com) a thread and its posts. It also allows 
                                     <a href="{{ route('profile', ['username' => $thread->user->name, 'page' => 1]) }}" class="hover:font-bold">{{ '@' . $thread->user->name }}</a>
                                     <span class="ml-4">{{ $post->created_at }}</span>
                                 </p>
-                                <p class="text-lg p-3 rounded-lg">{{$post->content}}</p>
+                                <article class="p-3 prose lg:prose-xl">
+                                    <x-markdown>
+{{ $post->content }}
+                                    </x-markdown>
+                                </article>
                             </div>
                         @else
                             <div class="w-full my-5 rounded-none bg-white shadow-md">
@@ -32,7 +28,11 @@ This page [displays](https://google.com) a thread and its posts. It also allows 
                                     <a href="{{ route('profile', ['username' => $thread->user->name, 'page' => 1]) }}" class="hover:font-bold">{{ '@' . $post->user->name }}</a>
                                     <span class="ml-4">{{ $post->created_at }}</span>
                                 </p>
-                                <p class="text-lg p-3">{{$post->content}}</p>
+                                <article class="p-3 prose lg:prose-xl">
+                                    <x-markdown>
+{{ $post->content }}
+                                    </x-markdown>
+                                </article>
                             </div>
                         @endif
                     @endforeach
@@ -43,7 +43,8 @@ This page [displays](https://google.com) a thread and its posts. It also allows 
                         <form action="{{ route('post.store') }}" method="POST" class="m-0">
                             @csrf
                             <input type="hidden" name="thread_id" value="{{ $thread->id }}">
-                            <textarea name="content" id="content" class="border border-black border-solid w-full"></textarea>
+                            <input type="hidden" name="content" id="content"></textarea>
+                            <div id="editor" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></div>
                             <button type="submit" id="submit_button" disabled class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded">Post</button>
                         </form>
                     @else
