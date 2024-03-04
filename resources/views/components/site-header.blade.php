@@ -3,7 +3,7 @@
         <a href="" class="text-2xl font-bold text-gray-800 p-5 h-full flex items-center">Forum v0.1</a>
     </div>
     <div class="w-1/2 h-full flex items-center">
-        <a href="https://google.com" class="text-gray-800 p-5 hover:bg-slate-100">Home</a>
+        <a href="{{ route('home') }}" class="text-gray-800 p-5 hover:bg-slate-100">Home</a>
         @if (!is_null(request()->user()))
             <a href="{{ route('profile', ['username' => request()->user()->name, 'page' => 1]) }}" class="text-gray-800 p-5 hover:bg-slate-100">Profile</a>
         @else
