@@ -19,6 +19,7 @@ class GetTopicAndPaginatedThreadsUseCase
         $topic = $this->topicRepository->findById($topicId);
         $threads = $topic
             ->threads()
+            ->orderBy('updated_at', 'desc')
             ->paginate($perPage, ['*'], 'page', $page);
 
         return [$topic, $threads, $threads->total(), $page, $perPage];

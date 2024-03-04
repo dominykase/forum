@@ -11,7 +11,7 @@
                     @foreach ($threads as $thread)
                         <a href="{{ route('thread', ['threadId' => $thread->id, 'page' => 1]) }}">
                             <div class="w-full my-2 p-3 bg-white shadow-md">
-                                <p>{{ $thread->posts_count . ' posts | created ' . $thread->created_at}}</p>
+                                <p>{{ '@' . $thread->user->name . ' | ' . $thread->posts_count . ' posts | created ' . $thread->created_at}}</p>
                                 <p class="text-xl font-bold">{{ $thread->name }}</p>
                                 <p class="line-clamp-1">{{ $thread->posts()->first()->content }}</p>
                             </div>
