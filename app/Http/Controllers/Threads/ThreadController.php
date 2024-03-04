@@ -10,6 +10,7 @@ use App\Modules\Threads\UseCases\CreateThreadUseCase;
 use App\Modules\Threads\UseCases\GetPaginatedThreadUseCase;
 use App\Services\PaginationService;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ThreadController extends Controller
 {
@@ -38,19 +39,14 @@ class ThreadController extends Controller
 
     public function create(
         CreateThreadRequest $request,
-    ): View {
-        [$thread, $posts] = $this->createThreadUseCase->handle(
+    ): RedirectResponse {
+        $threadId = $this->createThreadUseCase->handle(
             $request->name,
             intval($request->topic_id),
             intval($request->user_id),
             $request->content,
         );
 
-        return view('threadview', [
-            'thread' => $thread,
-            'posts' => $posts,
-            'pageNum' => 1,
-            'pageNumbers' => [1],
-        ]);
+        return redirect()->route('thread', ['threadId' => $threadId, 'page' => 1]);
     }
 }

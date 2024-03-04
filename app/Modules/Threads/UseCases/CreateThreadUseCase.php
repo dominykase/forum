@@ -26,7 +26,7 @@ class CreateThreadUseCase
         int $topicId,
         int $userId,
         string $content,
-    ): array {
+    ): int {
         $thread = $this->threadRepository->create([
             'name' => $name,
             'topic_id' => $topicId,
@@ -41,10 +41,6 @@ class CreateThreadUseCase
 
         $this->threadRepository->incrementPostsCount($thread->id);
 
-        $posts = $thread->posts()
-            ->orderBy('created_at', 'asc')
-            ->paginate(self::PER_PAGE, ['*'], 'page', self::DEFAULT_PAGE);
-
-        return [$thread, $posts];
+        return $thread->id;
     }
 }
