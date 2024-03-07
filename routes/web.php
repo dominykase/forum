@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Posts\PostController;
 use App\Http\Controllers\ProfileController;
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/post', [PostController::class, 'store'])->name('post.store');
     Route::post('/thread', [ThreadController::class, 'create'])->name('thread.create');
 });
+
+Route::get('/admin', [AdminPanelController::class, 'index'])->middleware(['auth', 'admin'])->name('admin');
 
 Route::get('/thread/{threadId}/{page}', [ThreadController::class, 'view'])
     ->name('thread')

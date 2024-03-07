@@ -32,4 +32,17 @@ class UserTest extends TestCase
         $this->assertEquals($post->user_id, $user->id);
         $this->assertEquals($post->content, $user->posts[0]->content);
     }
+
+    public function testUserCastsRoleCorrectly(): void
+    {
+        $user = User::query()->create([
+            'name' => 'Test_User',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'role' => 2,
+        ]);
+
+        $this->assertEquals(2, $user->role->id);
+        $this->assertEquals('moderator', $user->role->name);
+    }
 }

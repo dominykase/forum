@@ -2,7 +2,6 @@
 This is an online forum website where users can create threads in different topics, and they can post in markdown.
 
 ## todo
-- topics page with truncated threads inside
 - admin panel
 - user roles
 - temporary bans, perma-bans
@@ -28,4 +27,5 @@ This is an online forum website where users can create threads in different topi
 - topic page with paginated threads (20 per page)
 - create thread in topic
 - markdown posting (because it would be nice to have formatting and images)
+- topics page with truncated threads inside
 

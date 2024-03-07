@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Modules\Threads\UseCases;
 
 use App\Models\User;
+use App\Modules\Posts\Models\Post;
 use App\Modules\Threads\Models\Thread;
 use App\Modules\Threads\UseCases\CreateThreadUseCase;
 use App\Modules\Topics\Models\Topic;
@@ -30,12 +31,12 @@ class CreateThreadUseCaseTest extends TestCase
 
         $useCase = app(CreateThreadUseCase::class);
 
-        [$thread, $posts] = $useCase->handle('testName', $topic->id, $user->id, 'abcdef');
+        $threadId = $useCase->handle('testName', $topic->id, $user->id, 'abcdef');
 
-        $this->assertEquals('abcdef', $posts->first()->content);
-        $this->assertEquals($user->id, $posts->first()->user_id);
-        $this->assertEquals('testName', $thread->name);
-        $this->assertEquals($topic->id, $thread->topic_id);
-        $this->assertEquals($user->id, $thread->user_id);
+        $this->assertEquals('abcdef', Post::all()->first()->content);
+        $this->assertEquals($user->id, Post::all()->first()->user_id);
+        $this->assertEquals('testName', Thread::query()->where('id', $threadId)->first()->name);
+        $this->assertEquals($topic->id, Thread::query()->where('id', $threadId)->first()->topic_id);
+        $this->assertEquals($user->id, Thread::query()->where('id', $threadId)->first()->user_id);
     }
 }
